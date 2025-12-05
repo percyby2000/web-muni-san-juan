@@ -1,0 +1,260 @@
+---
+const slides = [
+  {
+    src: "slider1.png",
+    alt: "Municipalidad de San Juan"
+  },
+  {
+    src: "slider2.png",
+    alt: "Servicios y Obras"
+  },
+  {
+    src: "slider3.png",
+    alt: "Comunidad Sanjuanina"
+  }
+];
+---
+
+<section class="relative w-full h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800">
+  <div id="hero-slider" class="relative w-full h-full">
+    {slides.map((slide, index) => (
+      <div
+        class="absolute inset-0 w-full h-full opacity-0 transition-all duration-700 ease-out transform"
+        data-slide={index}
+      >
+        <img
+          src={slide.src}
+          alt={slide.alt}
+          class="w-full h-full object-cover object-center scale-105"
+          loading="eager"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+        
+        <!-- Efecto de brillo moderno -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 mix-blend-overlay"></div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Controles de navegación -->
+  <button
+    id="prev-btn"
+    aria-label="Slide anterior"
+    class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-white/50"
+  >
+    <svg class="w-6 h-6 md:w-7 md:h-7 transform group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path>
+    </svg>
+  </button>
+
+  <button
+    id="next-btn"
+    aria-label="Slide siguiente"
+    class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-white/50"
+  >
+    <svg class="w-6 h-6 md:w-7 md:h-7 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+    </svg>
+  </button>
+
+  <!-- Indicadores modernos -->
+  <div class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-10">
+    {slides.map((_, index) => (
+      <button
+        aria-label={`Ir a slide ${index + 1}`}
+        class="group relative focus:outline-none focus:ring-2 focus:ring-white/50 rounded-full"
+        data-indicator={index}
+      >
+        <div class="w-10 md:w-12 h-1.5 md:h-2 rounded-full bg-white/30 backdrop-blur-sm overflow-hidden">
+          <div class="indicator-progress h-full w-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full transition-all duration-300"></div>
+        </div>
+      </button>
+    ))}
+  </div>
+
+  <!-- Contador de slides (opcional pero moderno) -->
+  <div class="absolute top-6 right-6 md:top-8 md:right-8 z-10 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm md:text-base font-medium">
+    <span id="current-number">1</span> / <span>{slides.length}</span>
+  </div>
+</section>
+
+<style>
+  /* Animación del slide activo */
+  #hero-slider > div[data-slide].active {
+    opacity: 1;
+  }
+
+  #hero-slider > div[data-slide].active img {
+    animation: zoomIn 7s ease-out forwards;
+  }
+
+  @keyframes zoomIn {
+    from {
+      transform: scale(1.05);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+
+  /* Indicador activo con animación de progreso */
+  button[data-indicator].active .indicator-progress {
+    width: 100%;
+    animation: progress 4000ms linear;
+  }
+
+  @keyframes progress {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  /* Efecto hover en indicadores */
+  button[data-indicator]:hover .indicator-progress {
+    width: 50%;
+  }
+
+  button[data-indicator].active:hover .indicator-progress {
+    animation-play-state: paused;
+  }
+
+  /* Ocultar controles en pantallas muy pequeñas si es necesario */
+  @media (max-width: 480px) {
+    #prev-btn, #next-btn {
+      width: 40px;
+      height: 40px;
+    }
+  }
+</style>
+
+<script>
+  const slides = document.querySelectorAll<HTMLDivElement>("#hero-slider > div");
+  const indicators = document.querySelectorAll<HTMLButtonElement>("button[data-indicator]");
+  const prevBtn = document.getElementById("prev-btn") as HTMLButtonElement;
+  const nextBtn = document.getElementById("next-btn") as HTMLButtonElement;
+  const currentNumber = document.getElementById("current-number");
+  
+  let current = 0;
+  let interval: number;
+  let isTransitioning = false;
+
+  function showSlide(index: number) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    // Remover clase active de todos
+    slides.forEach((s) => {
+      s.classList.remove("active");
+      s.style.opacity = "0";
+    });
+    indicators.forEach((ind) => {
+      ind.classList.remove("active");
+    });
+
+    // Agregar clase active al actual
+    slides[index].classList.add("active");
+    slides[index].style.opacity = "1";
+    indicators[index].classList.add("active");
+
+    // Actualizar contador
+    if (currentNumber) {
+      currentNumber.textContent = (index + 1).toString();
+    }
+
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 700);
+  }
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+
+  function prevSlide() {
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+  }
+
+  function startAuto() {
+    interval = window.setInterval(nextSlide, 4000);
+  }
+
+  function stopAuto() {
+    clearInterval(interval);
+  }
+
+  function resetAuto() {
+    stopAuto();
+    startAuto();
+  }
+
+  // Inicializar
+  showSlide(0);
+  startAuto();
+
+  // Controles con botones
+  prevBtn?.addEventListener("click", () => {
+    prevSlide();
+    resetAuto();
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    nextSlide();
+    resetAuto();
+  });
+
+  // Controles con indicadores
+  indicators.forEach((btn, idx) => {
+    btn.addEventListener("click", () => {
+      current = idx;
+      showSlide(current);
+      resetAuto();
+    });
+  });
+
+  // Controles con teclado (flechas izquierda/derecha)
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      prevSlide();
+      resetAuto();
+    } else if (e.key === "ArrowRight") {
+      nextSlide();
+      resetAuto();
+    }
+  });
+
+  // Pausar al hacer hover
+  const slider = document.getElementById("hero-slider");
+  if (slider) {
+    slider.addEventListener("mouseenter", stopAuto);
+    slider.addEventListener("mouseleave", startAuto);
+  }
+
+  // Soporte para gestos táctiles (swipe)
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  slider?.addEventListener("touchstart", (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
+
+  slider?.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    if (touchStartX - touchEndX > swipeThreshold) {
+      nextSlide();
+      resetAuto();
+    } else if (touchEndX - touchStartX > swipeThreshold) {
+      prevSlide();
+      resetAuto();
+    }
+  }
+</script>

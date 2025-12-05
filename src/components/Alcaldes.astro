@@ -1,0 +1,281 @@
+---
+interface Alcalde {
+  nombre: string;
+  periodo: string;
+  imagen: string;
+  descripcion?: string;
+}
+
+const alcaldes: Alcalde[] = [
+  { nombre: "Alcalde 1963", periodo: "1963 - 1966", imagen: "/alcaldes/16.jpg" },
+  { nombre: "Alcalde 1963", periodo: "1963 - 1966", imagen: "/alcaldes/15.jpg" },
+  { nombre: "Alcalde 1967", periodo: "1967 - 1970", imagen: "/alcaldes/14.jpg" },
+  { nombre: "Alcalde 1971", periodo: "1971 - 1974", imagen: "/alcaldes/13.jpg" },
+  { nombre: "Alcalde 1975", periodo: "1975 - 1978", imagen: "/alcaldes/12.jpg" },
+  { nombre: "Alcalde 1979", periodo: "1979 - 1982", imagen: "/alcaldes/11.jpg" },
+  { nombre: "Alcalde 1983", periodo: "1983 - 1986", imagen: "/alcaldes/10.jpg" },
+  { nombre: "Alcalde 1987", periodo: "1987 - 1990", imagen: "/alcaldes/9.jpg" },
+  { nombre: "Alcalde 1991", periodo: "1991 - 1994", imagen: "/alcaldes/8.jpg" },
+  { nombre: "Alcalde 1995", periodo: "1995 - 1998", imagen: "/alcaldes/7.jpg" },
+  { nombre: "Alcalde 1999", periodo: "1999 - 2002", imagen: "/alcaldes/6.jpg" },
+  { nombre: "Alcalde 2003", periodo: "2003 - 2006", imagen: "/alcaldes/5.jpg" },
+  { nombre: "Alcalde 2007", periodo: "2007 - 2010", imagen: "/alcaldes/4.jpg" },
+  { nombre: "Alcalde 2011", periodo: "2011 - 2014", imagen: "/alcaldes/3.jpg" },
+  { nombre: "Alcalde 2015", periodo: "2015 - 2018", imagen: "/alcaldes/2.jpg" },
+  { nombre: "Alcalde 2019", periodo: "2019 - 2022", imagen: "/alcaldes/1.jpg" },
+];
+---
+<div class="w-full py-12 lg:py-16 flex items-center justify-center mb-8" style="background: transparent;">
+  <h1 class="text-2xl md:text-3xl font-semibold tracking-wide text-[#0b2545]" style="mix-blend-mode: multiply;">
+    HISTORIA DE ALCALDES
+  </h1>
+</div>
+
+<section class="relative w-full min-h-[70vh] py-12 lg:py-16 bg-amber-50 overflow-hidden">
+  <!-- pared texturizada de fondo -->
+  <div class="absolute inset-0 pointer-events-none opacity-95"
+    style="background-image: url('/alcaldes/pared.jpg'); background-size: auto; background-repeat: repeat; background-position: 0 0; mix-blend-mode: multiply; filter: saturate(0.95) contrast(0.98);"></div>
+
+  <div class="relative max-w-6xl mx-auto px-6 lg:px-8">
+
+    <!-- Grid de fotos -->
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 auto-rows-max">
+      {alcaldes.map((a, i) => {
+        const rot = (i % 5 - 2) * 4;
+        const fromX = i % 2 === 0 ? '-140px' : '140px';
+        const xShift = ((i % 3) - 1) * 6;
+        return (
+          <figure
+            class="alcalde-card relative cursor-pointer transform transition-all duration-300 hover:-translate-y-2"
+            style={`
+              --delay: ${i * 180}ms;
+              --x: ${fromX};
+              --rot: ${rot}deg;
+              --xshift: ${xShift}px;
+              --initial-transform: translate3d(var(--x), 0, 0) rotate(var(--rot)) translateX(var(--xshift)) translateY(12px);
+              --final-transform: translate3d(0, 0, 0) rotate(0) translateX(var(--xshift)) translateY(0);
+              opacity: 0;
+              transform: var(--initial-transform);
+            `}
+            data-index={i}
+          >
+            <!-- Marco con shadow -->
+            <div class="alcalde-frame relative w-full aspect-[3/4] md:aspect-[3/4] "
+              style="box-shadow: 0 6px 18px rgba(2,6,23,0.06);">
+              <img
+                src={a.imagen}
+                alt={a.nombre}
+                loading="lazy"
+                class="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
+                onerror="if(!this.dataset.failed){ this.dataset.failed='1'; this.src='/alcaldes/default.jpg'; }"
+              />
+            </div>
+
+            <!-- Pseudo-shadow bajo la foto -->
+            <div class="absolute bottom-0 left-2 right-2 h-6 bg-gradient-to-b from-black/15 to-transparent blur-2xl opacity-0 transition-opacity duration-500"
+              style="filter: blur(14px);"></div>
+          </figure>
+        )
+      })}
+    </div>
+  </div>
+</section>
+
+<!-- Modal para ver en grande -->
+<div id="alcalde-modal" 
+  class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
+  aria-hidden="true" role="dialog" aria-modal="true">
+  
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/65 backdrop-blur-sm" data-close="1"></div>
+
+  <!-- Contenedor modal -->
+  <div class="relative z-10 w-full max-w-lg max-h-[80vh] flex items-center justify-center rounded-lg bg-white/5 backdrop-blur-xl p-4 md:p-6">
+    
+    <!-- Botón cerrar -->
+    <button id="modal-close" 
+      class="absolute -right-4 -top-4 md:right-4 md:top-4 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/80 hover:bg-black/95 text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 hover:rotate-90 backdrop-blur-lg border border-white/10 shadow-lg"
+      aria-label="Cerrar">
+      <span class="text-2xl md:text-3xl font-light">×</span>
+    </button>
+
+    <!-- Imagen zoom -->
+    <img id="modal-img" 
+      class="modal-img w-auto h-auto max-w-[90%] max-h-[90%] object-contain rounded cursor-zoom-in transition-transform duration-300"
+      src="" alt="" />
+  </div>
+</div>
+
+<style>
+  /* Animación de entrada: cards se deslizan desde los lados */
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: var(--initial-transform);
+    }
+    to {
+      opacity: 1;
+      transform: var(--final-transform);
+    }
+  }
+
+  .alcalde-card {
+    will-change: transform, opacity;
+    transform: translateZ(0); /* Fuerza GPU acceleration */
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  .alcalde-card.in-view {
+    animation: slideIn 2.2s cubic-bezier(0.16, 0.95, 0.24, 1) var(--delay) forwards;
+    will-change: auto; /* Remover después de animación */
+  }
+
+  .alcalde-card.in-view .alcalde-frame {
+    box-shadow: 0 22px 48px rgba(2, 6, 23, 0.12) !important;
+  }
+
+  .alcalde-card.in-view ~ * {
+    opacity: 1;
+  }
+
+  /* Responsive mobile */
+  @media (max-width: 640px) {
+    .alcalde-frame {
+      aspect-ratio: 2 / 3 !important;
+    }
+  }
+
+  /* Modal visible */
+  #alcalde-modal.show {
+    display: flex;
+  }
+
+  .modal-img.zoomed {
+    transform: scale(var(--zoom, 1));
+    cursor: grab;
+  }
+
+  .modal-img.zoomed:active {
+    cursor: grabbing;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          // Usar requestAnimationFrame para mejor rendimiento
+          requestAnimationFrame(() => {
+            en.target.classList.add('in-view');
+            obs.unobserve(en.target);
+          });
+        }
+      });
+    }, { 
+      threshold: 0.12, 
+      rootMargin: '100px 0px 100px 0px' // Precargar antes
+    });
+
+    document.querySelectorAll('.alcalde-card').forEach(el => io.observe(el));
+
+    // === MODAL Y ZOOM ===
+    const modal = document.getElementById('alcalde-modal');
+    const modalImg = document.getElementById('modal-img');
+    const closeBtn = document.getElementById('modal-close');
+    const backdrop = document.querySelector('[data-close="1"]');
+
+    if (!modal || !modalImg || !closeBtn) return;
+
+    let zoom = 1;
+    const ZOOM_MIN = 1, ZOOM_MAX = 3, ZOOM_STEP = 0.25;
+    let lastTouch = 0;
+
+    function openModal(src, alt = '') {
+      modalImg.src = src;
+      modalImg.alt = alt;
+      zoom = 1;
+      modalImg.style.setProperty('--zoom', zoom);
+      modalImg.style.transform = 'scale(1)';
+      modalImg.classList.remove('zoomed');
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      modalImg.src = '';
+      document.body.style.overflow = '';
+      zoom = 1;
+      modalImg.style.transform = '';
+      modalImg.classList.remove('zoomed');
+    }
+
+    // Click en foto para abrir
+    document.querySelectorAll('.alcalde-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.querySelector('img');
+        if (img) openModal(img.src, img.alt);
+      });
+    });
+
+    // Cerrar
+    closeBtn.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+    document.addEventListener('keydown', e => e.key === 'Escape' && closeModal());
+
+    // Doble click para zoom
+    modalImg.addEventListener('dblclick', () => {
+      zoom = zoom <= 1 ? 2 : 1;
+      modalImg.style.setProperty('--zoom', zoom);
+      modalImg.classList.toggle('zoomed', zoom > 1);
+    });
+
+    // Doble tap en móvil
+    modalImg.addEventListener('touchend', e => {
+      const now = Date.now();
+      if (now - lastTouch < 300) {
+        zoom = zoom <= 1 ? 2 : 1;
+        modalImg.style.setProperty('--zoom', zoom);
+        modalImg.classList.toggle('zoomed', zoom > 1);
+        e.preventDefault();
+      }
+      lastTouch = now;
+    });
+
+    // Rueda para zoom (Ctrl + wheel)
+    modalImg.addEventListener('wheel', e => {
+      if (!e.ctrlKey) return;
+      e.preventDefault();
+      zoom = Math.min(ZOOM_MAX, Math.max(ZOOM_MIN, zoom - Math.sign(e.deltaY) * ZOOM_STEP));
+      modalImg.style.setProperty('--zoom', zoom);
+      modalImg.classList.toggle('zoomed', zoom > 1);
+    }, { passive: false });
+
+    // Arrastrar cuando está amplificado
+    let isDown = false, startX = 0, startY = 0;
+    modalImg.addEventListener('mousedown', e => {
+      if (zoom <= 1) return;
+      isDown = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      e.preventDefault();
+    });
+
+    window.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      modalImg.style.transform = `scale(${zoom}) translate(${dx / zoom}px, ${dy / zoom}px)`;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDown) return;
+      isDown = false;
+      setTimeout(() => modalImg.style.transform = `scale(${zoom})`, 100);
+    });
+  });
+</script>

@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro'
+import '../styles/global.css'
+---
+<Layout>
+  <section class="container mx-auto px-4 py-10">
+    <h1 class="text-3xl font-bold text-gray-800">Contacto</h1>
+    <p class="mt-3 text-gray-600">Información de contacto y atención al vecino.</p>
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
+      <div class="rounded-xl border border-gray-200 p-5">
+        <h2 class="text-xl font-semibold text-gray-800">Dirección</h2>
+        <p class="text-sm text-gray-600 mt-2">Av. Principal s/n, San Juan Bautista, Ayacucho</p>
+        <h2 class="text-xl font-semibold text-gray-800 mt-4">Teléfono</h2>
+        <p class="text-sm text-gray-600 mt-2">(066) 000000</p>
+      </div>
+      <form class="rounded-xl border border-gray-200 p-5">
+        <div class="grid grid-cols-1 gap-3">
+          <input type="text" placeholder="Nombre" class="px-3 py-2 border rounded" />
+          <input type="email" placeholder="Correo" class="px-3 py-2 border rounded" />
+          <textarea placeholder="Mensaje" class="px-3 py-2 border rounded h-28"></textarea>
+          <button type="button" class="px-4 py-2 bg-blue-700 text-white rounded">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</Layout>

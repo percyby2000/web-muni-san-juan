@@ -1,0 +1,301 @@
+---
+// filepath: d:\muni san juan\muni_san_juan\src\components\Historia.astro
+---
+
+<section class="w-full bg-gray-50">
+    
+    <!-- Hero -->
+    <div class="relative h-[500px] overflow-hidden">
+        <img 
+            src="/historia/slider01.jpg" 
+            alt="Iglesia antigua de San Juan Bautista"
+            class="absolute inset-0 w-full h-full object-cover brightness-[0.4] grayscale-[0.3] transition-transform duration-700 hover:scale-105"
+        />
+        <div class="absolute inset-0  to-gray-900/70"></div>
+        
+        <div class="relative h-full max-w-7xl mx-auto px-6 lg:px-12 flex flex-col justify-center text-white">
+            <div class="text-xs uppercase tracking-widest font-medium opacity-70 mb-4 animate-fade-in-down">
+                Historia Institucional
+            </div>
+            <h1 class="text-5xl lg:text-6xl font-bold mb-4 tracking-tight animate-fade-in-up animation-delay-200">
+                Distrito de San Juan Bautista
+            </h1>
+            <p class="text-xl opacity-85 animate-fade-in-up animation-delay-400">
+                Creado el 7 de abril de 1960 mediante Ley N° 13415
+            </p>
+        </div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
+        
+        <!-- Introducción -->
+        <div class="scroll-reveal bg-white border-l-4 border-blue-900 p-8 lg:p-12 mb-16 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+            <h2 class="text-3xl font-semibold text-gray-900 mb-6">Reseña Histórica</h2>
+            <p class="text-lg leading-relaxed text-gray-700 mb-6">
+                Su historia no solo se remonta a la fecha de su creación política 
+                <strong class="text-blue-900 font-semibold">(07 de abril de 1960)</strong>, 
+                sino que tiene una historia muy larga que se extiende por siglos. En la época 
+                colonial, toda esta zona estaba parcelada en pequeños fundos o haciendas de los 
+                corregidores y sacerdotes de la ciudad de Ayacucho.
+            </p>
+            <p class="text-lg leading-relaxed text-gray-700">
+                Luego, en la época republicana, los pocos habitantes del distrito esparcidos en 
+                diferentes zonas de producción eran sirvientes y yanaconas de los españoles 
+                llamados semaneros.
+            </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-16">
+            <div class="scroll-reveal bg-white border border-gray-200 p-6 hover:border-blue-900 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg animation-delay-100">
+                <div class="text-3xl font-semibold text-blue-900 mb-2 transition-transform duration-300 group-hover:scale-110">7 ABR 1960</div>
+                <div class="text-xs uppercase tracking-wider text-gray-600 font-medium">
+                    Fecha de Creación
+                </div>
+            </div>
+            <div class="scroll-reveal bg-white border border-gray-200 p-6 hover:border-blue-900 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg animation-delay-200">
+                <div class="text-3xl font-semibold text-blue-900 mb-2 transition-transform duration-300 group-hover:scale-110">50,325</div>
+                <div class="text-xs uppercase tracking-wider text-gray-600 font-medium">
+                    Población Total
+                </div>
+            </div>
+            <div class="scroll-reveal bg-white border border-gray-200 p-6 hover:border-blue-900 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg animation-delay-300">
+                <div class="text-3xl font-semibold text-blue-900 mb-2 transition-transform duration-300 group-hover:scale-110">2,734</div>
+                <div class="text-xs uppercase tracking-wider text-gray-600 font-medium">
+                    Altitud (msnm)
+                </div>
+            </div>
+            <div class="scroll-reveal bg-white border border-gray-200 p-6 hover:border-blue-900 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg animation-delay-400">
+                <div class="text-3xl font-semibold text-blue-900 mb-2 transition-transform duration-300 group-hover:scale-110">1,871</div>
+                <div class="text-xs uppercase tracking-wider text-gray-600 font-medium">
+                    Superficie (km²)
+                </div>
+            </div>
+        </div>
+
+        <!-- Layout de dos columnas -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 lg:gap-12">
+            
+            <!-- Columna principal -->
+            <div class="space-y-12">
+                
+                <!-- Orígenes -->
+                <article class="scroll-reveal bg-white border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-500">
+                    <div class="bg-gray-50 border-b border-gray-200 px-6 lg:px-10 py-6 flex items-center gap-4">
+                        <div class="bg-blue-50 text-blue-900 font-bold text-2xl px-4 py-2 hover:bg-blue-900 hover:text-white transition-all duration-300">Orígenes del Distrito</div>
+
+                    </div>
+                    <div class="p-6 lg:p-10">
+                        <p class="text-base lg:text-lg leading-relaxed text-gray-700 mb-6">
+                            Los primeros pobladores del distrito de San Juan Bautista son procedentes 
+                            de las zonas aledañas como <strong class="text-blue-900 font-semibold">Pampa Cangallo</strong> e 
+                            <strong class="text-blue-900 font-semibold">Inkaraqay</strong>, formándose 
+                            un pequeño poblado que se fortaleció aún más con la Guerra del Pacífico.
+                        </p>
+                        
+                        <div class="border border-gray-200 overflow-hidden my-10 hover:shadow-lg transition-all duration-500 group">
+                            <img 
+                                src="/historia/PlazaSanJuanToros.jpg" 
+                                alt="Ayacucho antiguo" 
+                                class="w-full h-auto grayscale-[0.1] group-hover:scale-105 transition-transform duration-700"
+                            />
+                            <p class="bg-gray-50 border-t border-gray-200 px-6 py-4 text-sm text-gray-600">
+                                Fotografía Iglesia antigua de San Juan Bautista y Plaza de Toros.
+                            </p>
+                        </div>
+                        
+                        <p class="text-base lg:text-lg leading-relaxed text-gray-700">
+                            El distrito se convirtió en un barrio pujante y populoso a partir de las 
+                            décadas de los 30 y 40 del siglo XX, consolidando su identidad como 
+                            comunidad trabajadora y productiva.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Sidebar -->
+            <aside class="lg:sticky lg:top-8 space-y-8">
+                
+                <!-- Información oficial -->
+                <div class="scroll-reveal bg-white border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+                    <h3 class="bg-gray-50 border-b border-gray-200 px-6 py-4 text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                        Información Oficial
+                    </h3>
+                    <div class="p-6">
+                        <dl class="space-y-4">
+                            <div class="flex justify-between items-start gap-4 py-3 border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 px-2 -mx-2 rounded">
+                                <dt class="text-xs uppercase tracking-wider text-gray-600 font-medium">Capital</dt>
+                                <dd class="text-sm font-medium text-gray-900 text-right">San Juan Bautista</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-4 py-3 border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 px-2 -mx-2 rounded">
+                                <dt class="text-xs uppercase tracking-wider text-gray-600 font-medium">Región</dt>
+                                <dd class="text-sm font-medium text-gray-900 text-right">Ayacucho</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-4 py-3 border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 px-2 -mx-2 rounded">
+                                <dt class="text-xs uppercase tracking-wider text-gray-600 font-medium">Provincia</dt>
+                                <dd class="text-sm font-medium text-gray-900 text-right">Huamanga</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-4 py-3 border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 px-2 -mx-2 rounded">
+                                <dt class="text-xs uppercase tracking-wider text-gray-600 font-medium">Ley de Creación</dt>
+                                <dd class="text-sm font-medium text-gray-900 text-right">Ley N° 13415</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-4 py-3 border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 px-2 -mx-2 rounded">
+                                <dt class="text-xs uppercase tracking-wider text-gray-600 font-medium">Superficie Total</dt>
+                                <dd class="text-sm font-medium text-gray-900 text-right">1,871 km²</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-4 py-3 border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 px-2 -mx-2 rounded">
+                                <dt class="text-xs uppercase tracking-wider text-gray-600 font-medium">Población (INEI 2017)</dt>
+                                <dd class="text-sm font-medium text-gray-900 text-right">50,325 hab.</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-4 py-3 border-b border-gray-100 hover:bg-gray-50 transition-colors duration-200 px-2 -mx-2 rounded">
+                                <dt class="text-xs uppercase tracking-wider text-gray-600 font-medium">Densidad</dt>
+                                <dd class="text-sm font-medium text-gray-900 text-right">2,055.4 hab/km²</dd>
+                            </div>
+                            <div class="flex justify-between items-start gap-4 py-3 hover:bg-gray-50 transition-colors duration-200 px-2 -mx-2 rounded">
+                                <dt class="text-xs uppercase tracking-wider text-gray-600 font-medium">Altitud Media</dt>
+                                <dd class="text-sm font-medium text-gray-900 text-right">2,734 msnm</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+
+                <!-- Autoridad municipal -->
+                <div class="scroll-reveal bg-white border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 animation-delay-200">
+                    <h3 class="bg-gray-50 border-b border-gray-200 px-6 py-4 text-sm font-semibold text-gray-900 uppercase tracking-wider">
+                        Autoridad Municipal
+                    </h3>
+                    <div class="p-6 text-center">
+                        <div class="text-xs uppercase tracking-widest text-gray-600 font-semibold mb-3">
+                            Alcalde Distrital
+                        </div>
+                        <div class="text-lg font-semibold text-blue-900 mb-3 leading-tight hover:text-blue-950 transition-colors duration-300">
+                            Wilmer Vicente Prado Estrella
+                        </div>
+                        <div class="text-sm text-gray-600 font-medium">
+                            Período de Gestión
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            2023 - 2026
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nota histórica -->
+                <div class="scroll-reveal bg-blue-50 border-2 border-blue-900 overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 animation-delay-300">
+                    <h3 class="bg-blue-900 text-white px-6 py-4 text-sm font-semibold uppercase tracking-wider">
+                        Nota Histórica
+                    </h3>
+                    <div class="p-6">
+                        <p class="text-sm lg:text-base leading-relaxed text-blue-900">
+                            El Distrito de San Juan Bautista cuenta con más de 60 años de reconocimiento 
+                            oficial, pero su historia se extiende por más de 400 años desde la época 
+                            colonial española.
+                        </p>
+                    </div>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+    /* Animaciones de entrada */
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in-down {
+        animation: fadeInDown 0.6s ease-out;
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    .animation-delay-200 {
+        animation-delay: 0.2s;
+        opacity: 0;
+        animation-fill-mode: forwards;
+    }
+
+    .animation-delay-400 {
+        animation-delay: 0.4s;
+        opacity: 0;
+        animation-fill-mode: forwards;
+    }
+
+    /* Scroll reveal */
+    .scroll-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .scroll-reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .animation-delay-100.revealed {
+        transition-delay: 0.1s;
+    }
+
+    .animation-delay-200.revealed {
+        transition-delay: 0.2s;
+    }
+
+    .animation-delay-300.revealed {
+        transition-delay: 0.3s;
+    }
+
+    .animation-delay-400.revealed {
+        transition-delay: 0.4s;
+    }
+</style>
+
+<script>
+    // Intersection Observer para animaciones al hacer scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observar todos los elementos con la clase scroll-reveal
+    document.addEventListener('DOMContentLoaded', () => {
+        const scrollElements = document.querySelectorAll('.scroll-reveal');
+        scrollElements.forEach(el => observer.observe(el));
+    });
+</script>
