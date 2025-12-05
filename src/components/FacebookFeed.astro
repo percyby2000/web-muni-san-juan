@@ -1,0 +1,270 @@
+
+    ---
+const {
+  pageUrl,
+  width = 500,
+  height = 700,
+  title = "Últimas publicaciones",
+} = Astro.props;
+---
+
+<div id="fb-root"></div>
+
+<script is:inline async defer crossorigin="anonymous"
+  src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v19.0">
+</script>
+
+<section class="fb-section">
+  
+  <!-- HEADER DECORATIVO -->
+  <div class="fb-header-top">
+    <div class="fb-header-content">
+      <div class="fb-title-wrapper">
+        <div class="fb-icon-container">
+          <svg class="fb-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </div>
+        <div>
+          <h2 class="fb-title">{title}</h2>
+          <p class="fb-subtitle">Mantente informado con nuestras publicaciones</p>
+        </div>
+      </div>
+      <div class="fb-badge">OFICIAL</div>
+    </div>
+  </div>
+
+  <!-- CONTENEDOR PRINCIPAL -->
+  <div class="fb-wrapper">
+    <div class="fb-container">
+      <div
+        class="fb-page"
+        data-href={pageUrl}
+        data-tabs="timeline"
+        data-width={width}
+        data-height={height}
+        data-small-header="true"
+        data-hide-cover="true"
+        data-show-facepile="false">
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER INFO -->
+  <div class="fb-footer">
+    <p>🔔 Síguenos para recibir las últimas actualizaciones</p>
+  </div>
+
+</section>
+
+<style>
+/* SECCIÓN PRINCIPAL */
+.fb-section {
+  width: 100%;
+  margin: 40px 0;
+  padding: 0 16px;
+}
+
+/* HEADER TOP */
+.fb-header-top {
+  background: linear-gradient(135deg, #0b2545 0%, #1a3a52 100%);
+  border-radius: 16px 16px 0 0;
+  padding: 24px 32px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.fb-header-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.fb-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.fb-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.fb-icon-container {
+  background: rgba(255,255,255,0.2);
+  padding: 12px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.fb-icon {
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+
+.fb-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.fb-subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+  margin: 4px 0 0 0;
+  font-weight: 400;
+}
+
+.fb-badge {
+  background: rgba(255,215,0,0.9);
+  color: #0b2545;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* CONTENEDOR WRAPPER */
+.fb-wrapper {
+  background: white;
+  border-radius: 0 0 16px 16px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(11, 37, 69, 0.15);
+  border: 1px solid #e5e7eb;
+  border-top: none;
+}
+
+/* CONTENEDOR FEED */
+.fb-container {
+  overflow: hidden;
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #ffffff, #f9fafb);
+  border: 1px solid #e5e7eb;
+}
+
+.fb-container iframe {
+  width: 100% !important;
+  border-radius: 12px;
+}
+
+/* FOOTER */
+.fb-footer {
+  background: linear-gradient(90deg, rgba(11, 37, 69, 0.05) 0%, rgba(31, 41, 55, 0.05) 100%);
+  padding: 16px 24px;
+  text-align: center;
+  border-radius: 0 0 12px 12px;
+  border: 1px solid #e5e7eb;
+  border-top: 2px solid #0b2545;
+}
+
+.fb-footer p {
+  margin: 0;
+  font-size: 13px;
+  color: #0b2545;
+  font-weight: 600;
+}
+
+/* RESPONSIVE TABLET */
+@media (max-width: 768px) {
+  .fb-section {
+    margin: 32px 0;
+    padding: 0 12px;
+  }
+
+  .fb-header-top {
+    padding: 20px 24px;
+  }
+
+  .fb-header-content {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .fb-title {
+    font-size: 20px;
+  }
+
+  .fb-subtitle {
+    font-size: 12px;
+  }
+
+  .fb-wrapper {
+    padding: 16px;
+  }
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 640px) {
+  .fb-section {
+    margin: 24px 0;
+    padding: 0 8px;
+  }
+
+  .fb-header-top {
+    padding: 16px;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .fb-header-top::before {
+    width: 200px;
+    height: 200px;
+  }
+
+  .fb-title-wrapper {
+    gap: 12px;
+  }
+
+  .fb-icon-container {
+    padding: 10px;
+  }
+
+  .fb-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .fb-title {
+    font-size: 18px;
+    letter-spacing: 0.5px;
+  }
+
+  .fb-subtitle {
+    font-size: 11px;
+  }
+
+  .fb-badge {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  .fb-wrapper {
+    padding: 12px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .fb-footer {
+    padding: 12px 16px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .fb-footer p {
+    font-size: 12px;
+  }
+}
+</style>

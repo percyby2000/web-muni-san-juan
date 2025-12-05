@@ -1,0 +1,92 @@
+---
+const alcalde = {
+  nombre: "Ing. Wilmer Prado Estrella",
+  cargo: "Alcalde de San Juan Bautista",
+  periodo: "2023 - 2026",
+  imagen: "/ing.png",
+  mensaje: "Estimados vecinos san juaninos, les expreso mi cordial saludo. Es un honor y una gran responsabilidad asumir la alcaldía de nuestro querido distrito San Juan Bautista, por ende, reitero mi compromiso y el de mi equipo, de trabajar juntos para mejorar la calidad de vida de todos vosotros; en esta gestión estamos comprometidos de redoblar los esfuerzos por un San Juan moderno y seguro.",
+};
+---
+
+<section class="py-24 px-6 bg-gradient-to-br from-white via-blue-50 to-white">
+  <div class="max-w-6xl mx-auto">
+    
+    <!-- GRID: Contenido + Foto -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      
+      <!-- COLUMNA IZQUIERDA: Contenido -->
+      <div class="space-y-8">
+        <!-- Nombre -->
+        <div>
+          <h2 class="text-5xl lg:text-6xl font-bold text-blue-900 leading-tight">
+            {alcalde.nombre}
+          </h2>
+        </div>
+        
+        <!-- Cargo -->
+        <div>
+          <p class="text-xl text-blue-600 font-light uppercase tracking-widest">
+            {alcalde.cargo}
+          </p>
+        </div>
+        
+        <!-- Separador -->
+        <div class="h-1 w-28 bg-blue-600 rounded-full"></div>
+        
+        <!-- Mensaje -->
+        <div>
+          <p class="text-gray-700 text-lg leading-8 font-light">
+            {alcalde.mensaje}
+          </p>
+        </div>
+
+        <!-- Período Badge -->
+        <div class="pt-4">
+          <span class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold text-sm uppercase tracking-wider shadow-lg">
+            Gestión {alcalde.periodo}
+          </span>
+        </div>
+      </div>
+
+      <!-- COLUMNA DERECHA: Foto -->
+      <div class="relative flex justify-center lg:justify-end">
+        <div class="relative">
+          <!-- Decoración de fondo -->
+          <div class="absolute -inset-6 bg-gradient-to-br from-blue-100 to-blue-50 rounded-3xl blur-xl opacity-60"></div>
+          
+          <!-- Imagen -->
+          <div class="relative">
+            <img 
+              src={alcalde.imagen}
+              alt={alcalde.nombre}
+              class="w-full h-auto object-contain drop-shadow-2xl"
+            />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (max-width: 1024px) {
+    section {
+      padding: 40px 24px;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    section {
+      padding: 32px 16px;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
